@@ -1,20 +1,19 @@
-# Build outputs
-/dist
-/frontend/dist
-/backend/target
-/tmp
-/out-tsc
-/bazel-out
-
 # Node modules
-/node_modules
-/frontend/node_modules
-/backend/node_modules
+node_modules/
+
+# Build outputs
+dist/
+frontend/dist/
+backend/target/
+out-tsc/
+bazel-out/
+clean-repo/
+tmp/
 
 # Logs
 npm-debug.log
 yarn-error.log
 
-# IDEs and editors
+# IDEs
 .idea/
 .vscode/
