@@ -1,0 +1,53 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="toolbar">
+      <h2>📋 Recent Invoices</h2>
+      <input type="text" class="search-input" placeholder="Search by client name..." [(ngModel)]="searchText"
+        (input)="filterInvoices()" />
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Client</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let invoice of filteredInvoices">
+          <td>{{ invoice.id }}</td>
+          <td>{{ invoice.clientName }}</td>
+          <td>{{ invoice.total | currency }}</td>
+          <td>{{ invoice.payment_status }}</td>
+          <td>{{ invoice.created_at | date:'short' }}</td>
+          <td class="actions-cell">
+            <button (click)="downloadPDF(invoice.id)">⬇️ PDF</button>
+            <a [routerLink]="['/invoice/edit', invoice.id]" class="edit-btn">✏️ Edit</a>
+            <button (click)="deleteInvoice(invoice.id)">🗑️ Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="filteredInvoices.length === 0">
+          <td colspan="7" class="no-results">No invoices found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+
+</html>

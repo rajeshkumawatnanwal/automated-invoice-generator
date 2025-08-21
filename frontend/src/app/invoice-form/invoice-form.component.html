@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href=".\invoice-form.component.css">
+</head>
+
+<body>
+  <form [formGroup]="invoiceForm" (ngSubmit)="submitInvoice()" class="invoice-form">
+  <h2>{{ isEditMode ? 'Edit Invoice' : 'Create New Invoice' }}</h2>
+
+  <h3>Client Details</h3>
+  <div class="client-details">
+    <input type="text" placeholder="Client Name *" formControlName="clientName" />
+    <input type="email" placeholder="Email *" formControlName="email" />
+    <input type="text" placeholder="Phone" formControlName="phone" />
+    <input type="text" placeholder="Address" formControlName="address" />
+    <select formControlName="payment_status">
+      <option value="Pending">Pending</option>
+      <option value="Paid">Paid</option>
+      <option value="Overdue">Overdue</option>
+    </select>
+  </div>
+
+  <h3>Items</h3>
+  <div formArrayName="items">
+    <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i" class="item-row">
+      <input class="item-name" type="text" placeholder="Item Name *" formControlName="itemName" />
+      <input class="item-qty" type="number" placeholder="Qty *" formControlName="quantity" />
+      <input class="item-price" type="number" placeholder="Price *" formControlName="price" />
+      <input class="item-total" type="number" placeholder="Total" formControlName="total" readonly />
+      <button type="button" class="remove-btn" (click)="removeItem(i)">❌</button>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button type="button" class="add-btn" (click)="addItem()">➕ Add Item</button>
+    <button type="submit" class="submit-btn" [disabled]="invoiceForm.invalid">
+      {{ isEditMode ? '💾 Update Invoice' : '💾 Create Invoice' }}
+    </button>
+  </div>
+</form>
+
+</body>
+
+</html>
+
