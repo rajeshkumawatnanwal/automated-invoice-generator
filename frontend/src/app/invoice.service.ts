@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class InvoiceService {
   private apiUrl = 'http://localhost:3000/api/invoices';
+  private serverUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) {}
 
@@ -27,6 +28,11 @@ export class InvoiceService {
 
   updateInvoice(id: number, invoiceData: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, invoiceData);
+  }
+  sendInvoiceEmail(to: string, pdfPath: string): Observable<any> {
+    const endpoint = `${this.serverUrl}/send-invoice`;
+    const body = { to, pdfPath };
+    return this.http.post(endpoint, body);
   }
 
   deleteInvoice(id: number): Observable<any> {

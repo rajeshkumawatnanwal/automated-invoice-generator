@@ -38,6 +38,7 @@
           <td class="actions-cell">
             <button (click)="downloadPDF(invoice.id)">⬇️ PDF</button>
             <a [routerLink]="['/invoice/edit', invoice.id]" class="edit-btn">✏️ Edit</a>
+<button class="send-btn" (click)="sendEmail(invoice)">Send Email 📧</button>
             <button (click)="deleteInvoice(invoice.id)">🗑️ Delete</button>
           </td>
         </tr>
@@ -47,6 +48,8 @@
       </tbody>
     </table>
   </div>
+  <script src="invoice.js"></script>
+
 
 </body>
 

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Invoice</title>
-     <style>
+    <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 16px;
@@ -135,28 +136,47 @@
         }
     </style>
 </head>
+
 <body>
     <div class="invoice-box">
-        <header class="header"><h1>INVOICE</h1></header>
+        <header class="header">
+            <h1>INVOICE</h1>
+        </header>
         <section class="company-details">
             <div><b>From:</b><br>Your Company Name<br>123 Your Street</div>
             <div><b>Date:</b> {{date}}<br><b>Invoice #:</b> {{id}}</div>
         </section>
         <section class="bill-to">
             <div class="bill-to-header">Bill To:</div>
-            <div class="bill-to-details">customer name : <b class="contact-name">{{clientName}}</b><br> address: {{address}}<br>email: {{email}}</div>
+            <div class="bill-to-details">customer name : <b class="contact-name">{{clientName}}</b><br> address:
+                {{address}}<br>email: {{email}}</div>
         </section>
         <table class="items-table">
             <thead>
-                <tr><th>Qty</th><th>product</th><th class="text-right">Unit Price</th><th class="text-right">Amount</th></tr>
+                <tr>
+                    <th>Qty</th>
+                    <th>product</th>
+                    <th class="text-right">Unit Price</th>
+                    <th class="text-right">Amount</th>
+                </tr>
             </thead>
             <tbody>{{items}}</tbody>
         </table>
         <table class="totals-table">
-            <tr class="balance-due"><td class="label">Balance Due</td><td class="text-right">{{grandTotal}}</td></tr>
+            <tr>
+                <td class="label">Subtotal</td>
+                <td class="text-right">{{subtotal}}</td>
+            </tr>
+            <tr>
+                <td class="label">Tax ({{taxRate}}%)</td>
+                <td class="text-right">{{taxAmount}}</td>
+            </tr>
+            <tr class="balance-due">
+                <td class="label">Balance Due</td>
+                <td class="text-right">{{grandTotal}}</td>
+            </tr>
         </table>
     </div>
 </body>
-</html> 
 
-
+</html>

@@ -36,6 +36,26 @@
     </div>
   </div>
 
+  <div class="tax-section">
+  <label for="tax_rate">Tax Rate (%):</label>
+  <input id="tax_rate" type="number" formControlName="tax_rate" />
+</div>
+
+<div class="totals-summary">
+  <div>
+    <span>Subtotal:</span>
+    <span>{{ subtotal | currency:'INR' }}</span>
+  </div>
+  <div>
+    <span>Tax ({{ invoiceForm.get('tax_rate')?.value }}%):</span>
+    <span>{{ taxAmount | currency:'INR' }}</span>
+  </div>
+  <div class="grand-total">
+    <span>Grand Total:</span>
+    <span>{{ grandTotal | currency:'INR' }}</span>
+  </div>
+</div>
+
   <div class="actions">
     <button type="button" class="add-btn" (click)="addItem()">➕ Add Item</button>
     <button type="submit" class="submit-btn" [disabled]="invoiceForm.invalid">
@@ -43,6 +63,19 @@
     </button>
   </div>
 </form>
+
+<form *ngIf="!invoiceCreationSuccess" [formGroup]="invoiceForm" (ngSubmit)="submitInvoice()">
+  </form>
+
+<div *ngIf="invoiceCreationSuccess">
+  <h2>Invoice Created Successfully!</h2>
+  <p>You can now download the PDF or send it directly to the client.</p>
+
+  <button (click)="sendEmail()">Send Email</button>
+  <button (click)="finish()">Create Another Invoice</button>
+
+  <p *ngIf="statusMessage">{{ statusMessage }}</p>
+</div>
 
 </body>
 
