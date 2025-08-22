@@ -18,3 +18,4 @@ yarn-error.log
 # IDEs
 .idea/
 .vscode/
+backend/target/
